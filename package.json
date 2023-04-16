@@ -1,0 +1,27 @@
+{
+  "name": "rps",
+  "version": "1.0.0",
+  "description": "just a simple rock-paper-scissors game",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enumjsa/rps.git"
+  },
+  "author": "enumjsa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enumjsa/rps/issues"
+  },
+  "homepage": "https://github.com/enumjsa/rps#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "prompt-sync-history": "^1.0.1"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4"
+  }
+}
