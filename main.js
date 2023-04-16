@@ -8,27 +8,28 @@ const getComputerChoice = () => {
     return choices[rand];
 };
 const playRound = (playerSelection, computerSelection) => {
-    if (playerSelection === computerSelection) {
-        return `'Tie. \nYou:${playerScore} Computer:${computerScore}'`;
-    } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        computerScore += 1;
-        return `"You've lost! Paper beats rock. \nYou:${playerScore} Computer:${computerScore}"`;
-    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        playerScore += 1;
-        return `"You've won! Rock beats scissors. \nYou:${playerScore} Computer:${computerScore}"`;
-    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        playerScore += 1;
-        return `"You've won! Paper beats rock. \nYou:${playerScore} Computer:${computerScore}"`;
-    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        computerScore += 1;
-        return `"You've lost! Scissors beats rock. \nYou:${playerScore} Computer:${computerScore}"`;
-    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        computerScore += 1;
-        return `"You've lost! Rock beats scissors. \nYou:${playerScore} Computer:${computerScore}"`;
-    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        return `"You've won! Scissors beats paper. \nYou:${playerScore} Computer:${computerScore}"`;
-    } else {
-        return 'Error, Make your choice: Rock, Paper or Scissors?';
+    switch (true) {
+        case playerSelection === computerSelection:
+            return `Tie. \nYou: ${playerScore} Computer: ${computerScore}`;
+        case playerSelection === "rock" && computerSelection === "paper":
+            computerScore += 1;
+            return `You've lost! Paper beats rock. \nYou: ${playerScore} Computer: ${computerScore}`;
+        case playerSelection === "rock" && computerSelection === "scissors":
+            playerScore += 1;
+            return `You've won! Rock beats scissors. \nYou: ${playerScore} Computer: ${computerScore}`;
+        case playerSelection === "paper" && computerSelection === "rock":
+            playerScore += 1;
+            return `You've won! Paper beats rock. \nYou: ${playerScore} Computer: ${computerScore}`;
+        case playerSelection === "paper" && computerSelection === "scissors":
+            computerScore += 1;
+            return `You've lost! Scissors beats rock. \nYou: ${playerScore} Computer: ${computerScore}`;
+        case playerSelection === "scissors" && computerSelection === "rock":
+            computerScore += 1;
+            return `You've lost! Rock beats scissors. \nYou: ${playerScore} Computer: ${computerScore}`;
+        case playerSelection === "scissors" && computerSelection === "paper":
+            return `You've won! Scissors beats paper. \nYou: ${playerScore} Computer: ${computerScore}`;
+        default:
+            return "Error, Make your choice: Rock, Paper or Scissors?";
     }
 };
 const game = () => {
@@ -36,13 +37,24 @@ const game = () => {
         let playerSelection = userPrompt(`Rock, Paper, Scissors game! ${counter} rounds left! Make your choice: Rock, Paper or Scissors: `);
         playerSelection = playerSelection.toLowerCase();
         getComputerChoice();
-        alert(playRound(playerSelection, getComputerChoice()));
-   }
-   if (playerScore === computerScore) {
-    alert('Tie');
-   } else if (playerScore > computerScore) {
-    alert (`"You've won! Congratulations!\nYou:${playerScore} Computer:${computerScore}"`);
-   } else if (playerScore < computerScore) {
-    alert (`"Game over, you've lost.\nYou:${playerScore} Computer:${computerScore}"`)
-   }
+        console.log(playRound(playerSelection, getComputerChoice()));
+    }
+    if (playerScore === computerScore) {
+        console.log(`Tie`);
+    }
+    else if (playerScore > computerScore) {
+        console.log(`Game over, you've won! Congratulations!\nYou: ${playerScore} Computer: ${computerScore}`);
+    }
+    else if (playerScore < computerScore) {
+        console.log(`Game over, you've lost.\nYou: ${playerScore} Computer: ${computerScore}`);
+    }
+    playerScore = 0;
+    computerScore = 0;
+};
+while (true) {
+    game();
+    const again = userPrompt(`Play again? (y/n): `);
+    if (again.toLowerCase() === "n") {
+        break;
+    }
 }
